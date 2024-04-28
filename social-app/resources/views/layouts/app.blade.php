@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html data-theme="light">
 
 <head>
     <meta charset="utf-8">
@@ -8,9 +8,17 @@
 </head>
 
 <body>
-    <h1 class="text-3xl font-bold underline">
-        Hello world!
-    </h1>
+    <nav>
+        @include('layouts.navbar')
+    </nav>
+
+    <main>
+        @yield('content')
+    </main>
+
+    <footer>
+        @include('layouts.footer')
+    </footer>
 </body>
 
 </html>
