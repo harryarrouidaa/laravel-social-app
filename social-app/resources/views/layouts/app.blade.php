@@ -8,19 +8,9 @@
 </head>
 
 <body>
-
-    <header>
-        @include('layouts.navbar')
-    </header>
-
-    <main>
-        @yield('content')
-    </main>
-
-    <footer>
-        @include('layouts.footer')
-    </footer>
-
+    <h1 class="text-3xl font-bold underline">
+        Hello world!
+    </h1>
 </body>
 
 </html>
