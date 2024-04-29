@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
 
-    public function profileView()
+    public function profileUploadView()
     {
         return view('auth.profile_upload');
     }
@@ -25,6 +25,9 @@ class ProfileController extends Controller
                 return redirect()->route('posts.view');
             }
         }
+    }
 
+    public function profileView(){
+        return view('user.profile');
     }
 }

@@ -24,7 +24,8 @@ Route::prefix('users')->controller(AuthController::class)->group(function () {
 // profile routes
 Route::prefix('profile')->controller(ProfileController::class)->group(function () {
     // Views
-    Route::get('/upload', 'profileView')->name('profile.upload.view');
+    Route::get('/upload', 'profileUploadView')->name('profile.upload.view');
+    Route::get('', 'profileView')->name('user.profile');
     // actions
     Route::post('/upload', 'upload')->name('profile.upload.action');
 });
@@ -32,4 +33,5 @@ Route::prefix('profile')->controller(ProfileController::class)->group(function (
 Route::prefix('posts')->controller(PostController::class)->group(function () {
     // views
     Route::get('/browse', 'posts')->name('posts.view');
+    Route::get('/new','createView')->name('posts.new');
 });
