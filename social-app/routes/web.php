@@ -29,7 +29,7 @@ Route::prefix('profile')->controller(ProfileController::class)->group(function (
     Route::post('/upload', 'upload')->name('profile.upload.action');
 });
 
-Route::prefix('post')->controller(PostController::class)->group(function () {
+Route::prefix('posts')->controller(PostController::class)->group(function () {
     // views
-    Route::get('/all', 'posts')->name('posts.view');
+    Route::get('/browse', 'posts')->name('posts.view');
 });
