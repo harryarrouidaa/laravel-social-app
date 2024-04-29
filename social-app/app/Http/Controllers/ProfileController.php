@@ -28,6 +28,8 @@ class ProfileController extends Controller
     }
 
     public function profileView(){
-        return view('user.profile');
+        $user = auth()->user();
+        $profile = Profile::where('user_id', $user->id)->first();
+        return view('user.profile', compact(['user', 'profile']));
     }
 }
