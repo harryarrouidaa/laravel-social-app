@@ -22,7 +22,7 @@ class AuthController extends Controller
     {
         $credentials = $request->only("email", "password");
         if (auth()->attempt($credentials)) {
-            return redirect()->route('user.posts');
+            return redirect()->route('posts.view');
         } else {
             return redirect()->back();
         }
