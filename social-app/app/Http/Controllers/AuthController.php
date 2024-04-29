@@ -22,7 +22,7 @@ class AuthController extends Controller
     {
         $credentials = $request->only("email", "password");
         if (auth()->attempt($credentials)) {
-            return redirect()->route('user.profile');
+            return redirect()->route('user.posts');
         } else {
             return redirect()->back();
         }
@@ -32,7 +32,7 @@ class AuthController extends Controller
         $user = User::create(['username' => $request->username, 'email' => $request->email, 'password' => $request->password]);
         if ($user) {
             auth()->login($user);
-            return redirect()->route('user.profile');
+            return redirect()->route('profile.upload');
         }
     }
     public function logout(Request $request)

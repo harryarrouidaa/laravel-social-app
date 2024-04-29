@@ -9,6 +9,7 @@
             </div>
         </div>
         <form method="post" action="{{ route('login.action') }}" class="flex flex-col gap-6 w-1/2">
+            @csrf
             <div class="flex flex-col">
                 <label for="email" class="mb-3">Email</label>
                 <input type="email" class="input input-bordered" name="email" id="email"
