@@ -22,14 +22,18 @@ class ProfileController extends Controller
             $profile = $request->file('profile')->store('public/profiles');
             $result = Profile::create(['path' => $profile, 'user_id' => $user->id]);
             if ($result) {
-                return redirect()->route('posts.view');
+                return redirect()->route('user.profile.view');
             }
         }
     }
 
-    public function profileView(){
-        $user = auth()->user();
-        $profile = Profile::where('user_id', $user->id)->first();
-        return view('user.profile', compact(['user', 'profile']));
+    public function profileView()
+    {
+        // $user = auth()->user();
+        // $profile = Profile::where('user_id', $user->id)->first();
+        return view(
+            'user.profile'
+            // , compact(['user', 'profile'])
+        );
     }
 }

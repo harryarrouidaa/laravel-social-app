@@ -14,6 +14,9 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'address', 
+        'age',
+        'status',
     ];
 
     public function profile()

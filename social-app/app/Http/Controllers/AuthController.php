@@ -29,10 +29,17 @@ class AuthController extends Controller
     }
     public function register(Request $request)
     {
-        $user = User::create(['username' => $request->username, 'email' => $request->email, 'password' => $request->password]);
+        $user = User::create([
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'age' => $request->age,
+            'status' => $request->status,
+            'address' => $request->address,
+        ]);
         if ($user) {
             auth()->login($user);
-            return redirect()->route('profile.upload');
+            return redirect()->route('profile.upload.view');
         }
     }
     public function logout(Request $request)

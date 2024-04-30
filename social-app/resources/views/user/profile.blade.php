@@ -20,7 +20,8 @@
                         {{-- profile --}}
                         <div
                             class="w-48 h-48 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500">
-                            <img src="{{ Storage::url(auth()->user()->profile->path) }}" alt="Profile Image" class="rounded-full">
+                            <img src="{{ Storage::url(auth()->user()->profile->path) }}" alt="Profile Image"
+                                class="rounded-full">
                         </div>
                     </div>
                     <div class="space-x-8 flex justify-end mt-32 md:mt-0 md:justify-center"><button
@@ -29,17 +30,15 @@
                     </div>
                 </div>
                 <div class="mt-20 text-center pb-12">
-                    <h1 class="text-4xl font-medium text-gray-700">{{ $user->username }} <span
-                            class="font-light text-gray-500">age</span></h1>
-                    <p class="font-light text-gray-600 mt-3">address</p>
-                    <p class="mt-8 text-gray-500">work</p>
-                    <p class="mt-2 text-gray-500">study</p>
+                    <h1 class="text-4xl font-medium text-gray-700">{{ auth()->user()->username }} <span
+                            class="font-light text-gray-500">{{ auth()->user()->age }}</span></h1>
+                    <p class="font-light text-gray-600 mt-3">{{ auth()->user()->address }}</p>
+                    {{-- <p class="mt-8 text-gray-500">work</p>
+                    <p class="mt-2 text-gray-500">study</p> --}}
                 </div>
                 <div class="mt-12 flex flex-col justify-center">
                     <p class="text-gray-600 text-center font-light lg:px-16">An artist of considerable range, Ryan — the
-                        name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of
-                        his own music, giving it a warm, intimate feel with a solid groove structure. An artist of
-                        considerable range.</p>
+                        {{ auth()->user()->status }}</p>
                 </div>
             </div>
         </div>

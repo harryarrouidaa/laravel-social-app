@@ -15,9 +15,11 @@ return new class extends Migration {
             $table->string('username');
             $table->string('email')->unique();
             $table->string('password');
-
-            // $table->unsignedBigInteger('profile_id')->nullable(true);
-            // $table->foreign('profile_id')->references('id')->on('profiles');
+            $table->string('age');
+            $table->string('address');
+            $table->string('work')->default('');
+            $table->string('study')->default('');
+            $table->string('status');
 
             $table->timestamps();
         });
