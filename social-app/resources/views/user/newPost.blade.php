@@ -8,7 +8,7 @@
             <div class="flex flex-col gap-5 w-2/4 mx-auto">
                 <div class="flex items-center justify-start gap-10  w-full mx-auto">
                     <img src="{{ Storage::url(auth()->user()->profile->path) }}" alt="not found"
-                        class="w-[100px] rounded-full">
+                        class="w-[60px] rounded-full">
                     <div class="flex flex-col gap-2">
                         <div>
                             {{ auth()->user()->username }}

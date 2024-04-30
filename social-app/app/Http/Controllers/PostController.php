@@ -10,8 +10,8 @@ class PostController extends Controller
 {
     public function posts()
     {
-        // $posts = Post::with('user')->orderBy("created_at", "desc")->paginate(10);
-        return view("posts.all_posts");
+        $posts = Post::all();
+        return view("posts.all_posts", compact('posts'));
     }
     public function newView()
     {
@@ -30,7 +30,7 @@ class PostController extends Controller
             $result = $post->image()->create(['path' => $imagePath]);
             // $result = Image::create(['path' => $imagePath, 'post_id' => $post->id]);
             if ($result) {
-                return redirect("/it-worked");
+                return redirect()->route('posts.new.view');
             }
         }
     }
