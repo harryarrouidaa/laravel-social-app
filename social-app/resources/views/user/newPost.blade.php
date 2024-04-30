@@ -23,10 +23,18 @@
                     <textarea name="content" class="w-full h-[200px] textarea textarea-bordered p-5" placeholder="what are you thinking ?"></textarea>
                 </div>
                 <div class="flex justify-between items-center">
-                    <input type="file" name="post_img" class="file-input file-input-bordered">
+                    {{-- <input type="file" name="post_img" class="file-input file-input-bordered"> --}}
+                    <div>
+                        <input type="file" class="hidden" id="file-upload" />
+                        <label for="file-upload" class="cursor-pointer flex items-center space-x-2">
+                            <img src="{{asset('/post/add-item.svg')}}" alt="not found" class="w-[20px]">
+                          <span class="text-slate-600">Upload Image</span>
+                        </label>   
+                    </div>
                     <button type="submit" class="btn btn-ghost btn-outline">CREATE</button>
                 </div>
             </div>
+           
         </form>
     </div>
 </div>
