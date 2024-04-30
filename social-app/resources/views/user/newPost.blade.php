@@ -1,13 +1,12 @@
-@extends('layouts.app')
-
 <div>
     <div>
         @include('layouts.sidebar')
     </div>
     <div class="w-full h-screen flex justify-center mt-32">
-        <form action="{{ route('post.new.action') }}" method="post" class="w-full">
+        <form action="{{ route('post.new.action') }}" method="post" class="w-full" enctype="multipart/form-data">
+            @csrf
             <div class="flex flex-col gap-5 w-2/4 mx-auto">
-                <div class="flex items-center justify-start gap-10  w-fullmx-auto">
+                <div class="flex items-center justify-start gap-10  w-full mx-auto">
                     <img src="{{ Storage::url(auth()->user()->profile->path) }}" alt="not found"
                         class="w-[100px] rounded-full">
                     <div class="flex flex-col gap-2">
@@ -20,18 +19,17 @@
                     </div>
                 </div>
                 <div class="flex flex-col w-full">
-                    <textarea name="content" class="w-full h-[200px] textarea textarea-bordered p-5" placeholder="what are you thinking ?"></textarea>
+                    <textarea name="content" class="w-full h-[200px] textarea textarea-bordered p-5" placeholder="What are you thinking?"></textarea>
                 </div>
                 <div class="flex justify-between items-center">
-                    {{-- <input type="file" name="post_img" class="file-input file-input-bordered"> --}}
                     <div>
-                        <input type="file" class="hidden" id="file-upload" />
+                        <input type="file" id="file-upload" name="image" class="hidden" />
                         <label for="file-upload" class="cursor-pointer flex items-center space-x-2">
-                            <img src="{{asset('/post/add-item.svg')}}" alt="not found" class="w-[20px]">
-                          <span class="text-slate-600">Upload Image</span>
+                            <img src="{{asset('/post/add-item2.svg')}}" alt="not found" class="w-[20px]">
+                            <span class="text-slate-600">Upload Image</span>
                         </label>   
                     </div>
-                    <button type="submit" class="btn btn-ghost btn-outline">CREATE</button>
+                    <button type="submit" class="btn btn-primary text-white">CREATE</button>
                 </div>
             </div>
            
