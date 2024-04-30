@@ -10,9 +10,10 @@ class PostController extends Controller
 {
     public function posts()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
         return view("posts.all_posts", compact('posts'));
     }
+    
     public function newView()
     {
         return view('user.newPost');

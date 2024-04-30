@@ -21,7 +21,7 @@
                         <div
                             class="w-48 h-48 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500">
                             <img src="{{ Storage::url(auth()->user()->profile->path) }}" alt="Profile Image"
-                                class="rounded-full">
+                                class="rounded-full w-[200px] h-[200px]">
                         </div>
                     </div>
                     <div class="space-x-8 flex justify-end mt-32 md:mt-0 md:justify-center"><button
