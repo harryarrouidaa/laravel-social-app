@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 <div class="w-full h-screen flex justify-center">
-    <div class="w-1/5">
+    <div class="w-1/6">
         @include('layouts.sidebar')
     </div>
-    <div class="h-screen w-4/5">
+    <div class="h-screen w-5/6">
         @foreach ($posts as $post)
             <div class="p-20 flex flex-col gap-8">
                 <div class="flex justify-start items-center w-full gap-6">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Models\Image;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -38,10 +39,10 @@ class PostController extends Controller
     public function postDelete($id)
     {
         $post = Post::find($id);
+        Storage::delete($post->image->path);
         $post->image->delete();
         if ($post->delete()) {
             return redirect()->route('user.profile.view');
         }
-
     }
 }

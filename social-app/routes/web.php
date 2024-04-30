@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\PostCondition;
 
@@ -39,4 +40,9 @@ Route::prefix('posts')->controller(PostController::class)->group(function () {
     // actions
     Route::post('/new', 'newAction')->name('post.new.action');
     Route::delete('/delete/{id}', 'postDelete');
+});
+
+Route::prefix('community')->controller(UserController::class)->group(function () {
+    // views
+    Route::get('', 'communityView')->name('community.view');
 });

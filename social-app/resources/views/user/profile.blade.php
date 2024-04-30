@@ -55,9 +55,9 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"
-                                    class="text-lg text-slate-600 flex justify-center items-center gap-2">
+                                    class="text-lg text-red-400 flex justify-center items-center gap-2">
                                     <img src="{{ asset('/post/delete-1.svg') }}" alt="not found"
-                                        class="w-[23px]">delete</button>
+                                        class="w-[22px]">delete</button>
                             </form>
                         </div>
                     </div>
