@@ -29,11 +29,26 @@ class ProfileController extends Controller
 
     public function profileView()
     {
-        // $user = auth()->user();
-        // $profile = Profile::where('user_id', $user->id)->first();
-        return view(
-            'user.profile'
-            // , compact(['user', 'profile'])
-        );
+        $posts = auth()->user()->posts;
+        return view('user.profile', compact('posts'));
+    }
+
+    public function editView()
+    {
+        return view('user.edit');
+    }
+    public function edit(Request $req)
+    {
+        $user = auth()->user();
+        $user->username = $req->username;
+        $user->email = $req->email;
+        $user->password = bcrypt($req->password);
+        $user->age = $req->age;
+        $user->address = $req->address;
+        $user->status = $req->status;
+        $result = $user->save();
+        if ($result) {
+            return redirect()->route('user.profile.view');
+        }
     }
 }

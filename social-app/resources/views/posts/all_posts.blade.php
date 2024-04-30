@@ -24,7 +24,7 @@
                         {{ $post->content }}
                     </div>
                     <img src="{{ Storage::url($post->image->path) }}" alt="not found" class="w-[300px] rounded-md">
-                    <dir class="flex justify-start items-center gap-10 w-1/3">
+                    <div class="flex justify-start items-center gap-10 w-1/3">
                         <div class="flex items-center gap-2">
                             <img src="{{asset('/post/like.svg')}}" alt="not found" class="w-[23px]">
                             <div class="text-lg text-slate-600">like</div>
@@ -33,7 +33,7 @@
                             <img src="{{asset('/post/comment.svg')}}" alt="not found" class="w-[20px]">
                             <div class="text-lg text-slate-600">comment</div>
                         </div>
-                    </dir>
+                    </div>
                 </div>
             </div>
             <hr>

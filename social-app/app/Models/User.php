@@ -14,7 +14,7 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
-        'address', 
+        'address',
         'age',
         'status',
     ];
@@ -22,6 +22,10 @@ class User extends Authenticatable
     public function profile()
     {
         return $this->hasOne(Profile::class);
+    }
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 
 }

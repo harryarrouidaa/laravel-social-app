@@ -13,7 +13,7 @@ class PostController extends Controller
         $posts = Post::orderBy('created_at', 'desc')->paginate(10);
         return view("posts.all_posts", compact('posts'));
     }
-    
+
     public function newView()
     {
         return view('user.newPost');
@@ -34,5 +34,14 @@ class PostController extends Controller
                 return redirect()->route('posts.new.view');
             }
         }
+    }
+    public function postDelete($id)
+    {
+        $post = Post::find($id);
+        $post->image->delete();
+        if ($post->delete()) {
+            return redirect()->route('user.profile.view');
+        }
+
     }
 }
