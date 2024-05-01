@@ -5,12 +5,12 @@
     <div class="w-1/6">
         @include('layouts.sidebar')
     </div>
-    <div class="w-5/6 h-screen flex flex-col p-10">
+    <div class="w-5/6 h-screen flex flex-col p-10 text-slate-600">
         <div class="flex flex-col w-full mx-auto text-center gap-5 py-10">
             <img src="{{ Storage::url($user->profile->path) }}" alt="not found"
                 class="w-[200px] h-[200px] rounded-full mx-auto mb-5">
             <div class="flex justify-center items-center gap-3">
-                <div class="font-bold"> {{ $user->username }}</div> -
+                <div class="font-bold"> {{ $user->username }}</div>
                 @if (auth()->user()->following()->where('following_id', $user->id)->exists())
                     <form method="post" action="/user/unfollow/{{ $user->id }}"
                         class="flex justify-center mt-3 items-center mb-3">
@@ -29,7 +29,7 @@
                 @endif
             </div>
             <div class="flex justify-center items-center gap-3">
-                <div class="font-light">{{ $user->status }}</div>
+                <div class="font-light">{{ $user->status }}</div> -
                 <div>{{ $user->age }} </div>
             </div>
             <div class="flex justify-center items-center gap-3">

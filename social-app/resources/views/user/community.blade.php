@@ -7,18 +7,19 @@
     </div>
     <div class="w-5/6 h-screen flex flex-col">
         <div class="">
-            <div class="relative w-3/5 mx-auto my-20">
-                <input type="text" id="Search" placeholder="Search for..."
+            <form method="get" action="{{ route('community.search') }}" class="relative w-3/5 mx-auto my-20">
+                @csrf
+                <input type="text" id="Search" placeholder="Search for..." name="query"
                     class="w-full rounded-lg bg-slate-50 border-2 py-2.5 pe-10 shadow-sm p-10" />
 
-                <span class="absolute inset-y-0 end-0 grid w-10 place-content-center">
+                <button type="submit" class="absolute inset-y-0 end-0 grid w-10 place-content-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="h-4 w-4">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                     </svg>
-                </span>
-            </div>
+                </button>
+            </form>
             <div class="flex justify-center items-center gap-3">
                 <img src="{{ asset('assets/attention.svg') }}" alt="not found" class="w-[20px]">
                 <div class="text-indigo-400 underline">
@@ -45,25 +46,26 @@
 
                                 {{-- Check if the authenticated user is following this user --}}
                                 @if (auth()->user()->following()->where('following_id', $user->id)->exists())
-                                    <form method="post" action="/user/unfollow/{{$user->id}}" class="flex justify-center gap-2 items-center mb-3">
+                                    <form method="post" action="/user/unfollow/{{ $user->id }}"
+                                        class="flex justify-center gap-2 items-center mb-3">
                                         @method('DELETE')
                                         @csrf
-                                        <img src="{{ asset('assets/added.svg') }}" alt="not found" class="w-[25px]">
-                                        <button type="submit" class="text-lg text-emerald-400">Followed</button>
+                                        <img src="{{ asset('assets/added.svg') }}" alt="not found" class="w-[20px]">
+                                        <button type="submit" class="text-md gap-1 text-emerald-400">Followed</button>
                                     </form>
                                 @else
                                     <form method="post" action="/user/follow/{{ $user->id }}"
-                                        class="flex justify-center gap-2 items-center">
+                                        class="flex justify-center gap-1 items-center">
                                         @csrf
-                                        <img src="{{ asset('assets/add.svg') }}" alt="not found" class="w-[25px]">
-                                        <button type="submit" class="text-lg text-slate-600">Follow</button>
+                                        <img src="{{ asset('assets/add.svg') }}" alt="not found" class="w-[20px]">
+                                        <button type="submit" class="text-md text-slate-600">Follow</button>
                                     </form>
                                     <form method="post" action="/user/block/{{ $user->id }}"
-                                        class="flex justify-center gap-2 items-center">
+                                        class="flex justify-center gap-1 items-center">
                                         @csrf
-                                        <img src="{{ asset('assets/block.svg') }}" alt="not found" class="w-[25px]">
-                                        <button type="submit" class="text-lg text-red-400">Block</button>
-                                    </form> 
+                                        <img src="{{ asset('assets/block.svg') }}" alt="not found" class="w-[20px]">
+                                        <button type="submit" class="text-md text-red-400">Block</button>
+                                    </form>
                                 @endif
 
                             </div>

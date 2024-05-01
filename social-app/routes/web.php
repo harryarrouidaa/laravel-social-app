@@ -48,6 +48,7 @@ Route::prefix('user')->controller(UserController::class)->group(function () {
     Route::get('/community', 'communityView')->name('community.view');
     Route::get('/show/{id}','show')->name('user.show.view');
     // actions
+    Route::get('/community/search','communityView')->name('community.search');
 });
 
 Route::prefix('user')->controller(FollowsController::class)->group(function () {
