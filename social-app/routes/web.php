@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FollowsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -46,4 +47,9 @@ Route::prefix('community')->controller(UserController::class)->group(function ()
     // views
     Route::get('', 'communityView')->name('community.view');
     // actions
+});
+
+Route::prefix('user')->controller(FollowsController::class)->group(function () {
+    Route::post('/follow/{id}', 'follow')->name('user.follow');
+    Route::delete('/block/{id}', 'block')->name('user.block');
 });

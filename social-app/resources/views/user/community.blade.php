@@ -42,14 +42,19 @@
                                 </div>
                             </div>
                             <div class="flex justify-end gap-10 items-center">
-                                <div class="flex justify-center gap-2 items-center">
+                                <form method="post" action="/user/follow/{{ $user->id }}"
+                                    class="flex justify-center gap-2 items-center">
+                                    @csrf
                                     <img src="{{ asset('assets/add.svg') }}" alt="not found" class="w-[25px]">
-                                    <div class="text-lg text-slate-600">Follow</div>
-                                </div>
-                                <div class="flex justify-center gap-2 items-center">
+                                    <button type="submit" class="text-lg text-slate-600">Follow</button>
+                                </form>
+                                <form method="post" action="/user/block/{{ $user->id }}"
+                                    class="flex justify-center gap-2 items-center">
+                                    @csrf
+                                    @method('DELETE')
                                     <img src="{{ asset('assets/block.svg') }}" alt="not found" class="w-[25px]">
-                                    <div class="text-lg text-red-400">Block</div>
-                                </div>
+                                    <button type="submit" class="text-lg text-red-400">Block</button>
+                                </form>
                             </div>
                         </div>
                         @if (count($user->posts) > 0)
@@ -60,7 +65,16 @@
                                 <img src="{{ Storage::url($user->posts->first()->image->path) }}" alt="not found"
                                     class="w-[300px] rounded-md">
                             </div>
+                        @else
+                        <div class="flex flex-col w-full gap-5">
+                            <div class="flex justify-start items-center gap-3">
+                                <div class="text-slate-400 underline">
+                                    !! this user does not have posted yet
+                                </div>
+                            </div>
+                        </div>
                         @endif
+
                     </div>
                     <hr>
                 @endforeach
