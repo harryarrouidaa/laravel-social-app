@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FollowsController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -57,4 +58,10 @@ Route::prefix('user')->controller(FollowsController::class)->group(function () {
     Route::post('/follow/{id}', 'follow')->name('user.follow');
     Route::post('/block/{id}', 'block')->name('user.block');
     Route::delete('/unfollow/{id}', 'unfollow')->name('user.unfollow');
+});
+
+Route::prefix('user')->controller(LikeController::class)->group(function () {
+    Route::post('/like/{id}', 'like')->name('user.like');
+    Route::post('/unlike/{id}', 'unlike')->name('user.unlike');
+    // Route::post('/comment/{id}', 'comment')->name('user.comment.view');
 });
