@@ -61,7 +61,7 @@
                                         @csrf
                                         <img src="{{ asset('assets/block.svg') }}" alt="not found" class="w-[25px]">
                                         <button type="submit" class="text-lg text-red-400">Block</button>
-                                    </form>
+                                    </form> 
                                 @endif
 
                             </div>
