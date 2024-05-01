@@ -42,19 +42,28 @@
                                 </div>
                             </div>
                             <div class="flex justify-end gap-10 items-center">
-                                <form method="post" action="/user/follow/{{ $user->id }}"
-                                    class="flex justify-center gap-2 items-center">
-                                    @csrf
-                                    <img src="{{ asset('assets/add.svg') }}" alt="not found" class="w-[25px]">
-                                    <button type="submit" class="text-lg text-slate-600">Follow</button>
-                                </form>
-                                <form method="post" action="/user/block/{{ $user->id }}"
-                                    class="flex justify-center gap-2 items-center">
-                                    @csrf
-                                    @method('DELETE')
-                                    <img src="{{ asset('assets/block.svg') }}" alt="not found" class="w-[25px]">
-                                    <button type="submit" class="text-lg text-red-400">Block</button>
-                                </form>
+
+                                {{-- Check if the authenticated user is following this user --}}
+                                @if (auth()->user()->following()->where('following_id', $user->id)->exists())
+                                    <div class="flex justify-center gap-2 items-center mb-3">
+                                        <img src="{{ asset('assets/added.svg') }}" alt="not found" class="w-[25px]">
+                                        <button type="submit" class="text-lg text-emerald-400">Followed</button>
+                                    </div>
+                                @else
+                                    <form method="post" action="/user/follow/{{ $user->id }}"
+                                        class="flex justify-center gap-2 items-center">
+                                        @csrf
+                                        <img src="{{ asset('assets/add.svg') }}" alt="not found" class="w-[25px]">
+                                        <button type="submit" class="text-lg text-slate-600">Follow</button>
+                                    </form>
+                                    <form method="post" action="/user/block/{{ $user->id }}"
+                                        class="flex justify-center gap-2 items-center">
+                                        @csrf
+                                        <img src="{{ asset('assets/block.svg') }}" alt="not found" class="w-[25px]">
+                                        <button type="submit" class="text-lg text-red-400">Block</button>
+                                    </form>
+                                @endif
+
                             </div>
                         </div>
                         @if (count($user->posts) > 0)
@@ -66,13 +75,13 @@
                                     class="w-[300px] rounded-md">
                             </div>
                         @else
-                        <div class="flex flex-col w-full gap-5">
-                            <div class="flex justify-start items-center gap-3">
-                                <div class="text-slate-400 underline">
-                                    !! this user does not have posted yet
+                            <div class="flex flex-col w-full gap-5">
+                                <div class="flex justify-start items-center gap-3">
+                                    <div class="text-slate-400 underline">
+                                        !! this user does not have posted yet
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         @endif
 
                     </div>

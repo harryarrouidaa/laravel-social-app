@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('follows', function (Blueprint $table) {
+        Schema::create('blocks', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('following_id');
+            $table->unsignedBigInteger('blocker_id');
+            $table->unsignedBigInteger('blocking_id');
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('following_id')->references('id')->on('users');
+            $table->foreign('blocker_id')->references('id')->on('users');
+            $table->foreign('blocking_id')->references('id')->on('users');
 
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('follows');
+        Schema::dropIfExists('blocks');
     }
 };

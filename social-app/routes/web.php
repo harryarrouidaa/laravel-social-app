@@ -51,5 +51,5 @@ Route::prefix('community')->controller(UserController::class)->group(function ()
 
 Route::prefix('user')->controller(FollowsController::class)->group(function () {
     Route::post('/follow/{id}', 'follow')->name('user.follow');
-    Route::delete('/block/{id}', 'block')->name('user.block');
+    Route::post('/block/{id}', 'block')->name('user.block');
 });
