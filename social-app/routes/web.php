@@ -45,4 +45,5 @@ Route::prefix('posts')->controller(PostController::class)->group(function () {
 Route::prefix('community')->controller(UserController::class)->group(function () {
     // views
     Route::get('', 'communityView')->name('community.view');
+    // actions
 });

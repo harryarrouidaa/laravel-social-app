@@ -10,9 +10,13 @@ class UserController extends Controller
 {
     public function communityView()
     {
-        $users = User::where('id', '!=', auth()->user()->id)->get();
-        $post = Post::orderBy('created_at','desc')->take(1)->get();
-        $latestPost = $post[0];
-        return view('user.community', compact('users', 'latestPost'));
-    }
+        // Get all users except the authenticated user with their latest posts
+        $users = User::with(['posts' => function ($query) {
+            $query->latest()->take(1);
+        }])
+        ->where('id', '!=', auth()->user()->id)
+        ->get();
+    
+        return view('user.community', compact('users'));
+    }    
 }

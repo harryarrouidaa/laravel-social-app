@@ -20,7 +20,7 @@
                 </span>
             </div>
             <div class="flex justify-center items-center gap-3">
-                <img src="{{asset('assets/attention.svg')}}" alt="not found" class="w-[20px]">
+                <img src="{{ asset('assets/attention.svg') }}" alt="not found" class="w-[20px]">
                 <div class="text-indigo-400 underline">
                     every user is with his latest post, so you can chose wisely
                 </div>
@@ -52,13 +52,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="flex flex-col w-full gap-5">
-                            <div class="text-slate-600 text-lg text-start">
-                                {{ $latestPost->content }}
+                        @if (count($user->posts) > 0)
+                            <div class="flex flex-col w-full gap-5">
+                                <div class="text-slate-600 text-lg text-start">
+                                    {{ $user->posts->first()->content }}
+                                </div>
+                                <img src="{{ Storage::url($user->posts->first()->image->path) }}" alt="not found"
+                                    class="w-[300px] rounded-md">
                             </div>
-                            <img src="{{ Storage::url($latestPost->image->path) }}" alt="not found"
-                                class="w-[300px] rounded-md">
-                        </div>
+                        @endif
                     </div>
                     <hr>
                 @endforeach
