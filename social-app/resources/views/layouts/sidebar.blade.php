@@ -14,6 +14,10 @@
             <img src="{{ asset('/assets/sidebar/browse.svg') }}" alt="not found" class="w-[25px]">
             <a class="text-xl text-slate-600 font-normal hover:underline" href="{{ route('posts.view') }}">Browse</a>
         </div>
+        {{-- <div class="flex items-center justify-start gap-2">
+            <img src="{{ asset('/assets/sidebar/browse2.svg') }}" alt="not found" class="w-[25px]">
+            <a class="text-xl text-slate-600 font-normal hover:underline" href="{{ route('posts.view') }}">Feed</a>
+        </div> --}}
         <div class="flex items-center justify-start gap-2">
             <img src="{{ asset('/assets/sidebar/new.svg') }}" alt="not found" class="w-[25px]">
             <a class="text-xl text-slate-600 font-normal hover:underline" href="{{route('posts.new.view')}}">New</a>

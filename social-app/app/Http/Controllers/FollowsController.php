@@ -25,16 +25,15 @@ class FollowsController extends Controller
 
     }
 
-
-    // public function unfollow(Request $request, $id)
-    // {
-    //     // Find and delete the follow record if it exists
-    //     $follow = Follow::where('follower_id', auth()->user()->id)
-    //         ->where('following_id', $id)
-    //         ->delete();
+    public function unfollow(Request $request, $id)
+    {
+        // Find and delete the follow record if it exists
+        $follow = Follow::where('user_id', auth()->user()->id)
+            ->where('following_id', $id)
+            ->delete();
         
-    //     return redirect()->back();
-    // }
+        return redirect()->back();
+    }
 
     public function block(Request $request, $id){
         $block = \App\Models\Block::create(['blocker_id' => auth()->user()->id, 'blocking_id' => $id]);

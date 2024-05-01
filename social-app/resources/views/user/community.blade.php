@@ -45,10 +45,12 @@
 
                                 {{-- Check if the authenticated user is following this user --}}
                                 @if (auth()->user()->following()->where('following_id', $user->id)->exists())
-                                    <div class="flex justify-center gap-2 items-center mb-3">
+                                    <form method="post" action="/user/unfollow/{{$user->id}}" class="flex justify-center gap-2 items-center mb-3">
+                                        @method('DELETE')
+                                        @csrf
                                         <img src="{{ asset('assets/added.svg') }}" alt="not found" class="w-[25px]">
                                         <button type="submit" class="text-lg text-emerald-400">Followed</button>
-                                    </div>
+                                    </form>
                                 @else
                                     <form method="post" action="/user/follow/{{ $user->id }}"
                                         class="flex justify-center gap-2 items-center">

@@ -43,13 +43,17 @@ Route::prefix('posts')->controller(PostController::class)->group(function () {
     Route::delete('/delete/{id}', 'postDelete');
 });
 
-Route::prefix('community')->controller(UserController::class)->group(function () {
+Route::prefix('user')->controller(UserController::class)->group(function () {
     // views
-    Route::get('', 'communityView')->name('community.view');
+    Route::get('/community', 'communityView')->name('community.view');
+    Route::get('/show/{id}','show')->name('user.show.view');
     // actions
 });
 
 Route::prefix('user')->controller(FollowsController::class)->group(function () {
+    // views
+    // actions
     Route::post('/follow/{id}', 'follow')->name('user.follow');
     Route::post('/block/{id}', 'block')->name('user.block');
+    Route::delete('/unfollow/{id}', 'unfollow')->name('user.unfollow');
 });

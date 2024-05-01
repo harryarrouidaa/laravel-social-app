@@ -6,7 +6,7 @@
     </div>
     <div class="h-screen w-5/6">
         @foreach ($posts as $post)
-         {{-- post {{$post}}
+            {{-- post {{$post}}
         
         user {{$post->user}}
         <hr> --}}
@@ -16,9 +16,10 @@
                         <img src="{{ Storage::url($post->user->profile->path) }}" alt="not found"
                             class="rounded-full w-[60px] h-[60px]">
                         <div class="flex flex-col">
-                            <div class="text-slate-600 text-md font-bold">
+                            <a class="text-slate-600 text-md font-bold"
+                                href="{{ route('user.show.view', ['id' => $post->user->id]) }}">
                                 {{ $post->user->username }}
-                            </div>
+                            </a>
                             <div class="text-slate-600 text-md">
                                 {{ $post->created_at }}
                             </div>
