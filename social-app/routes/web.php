@@ -7,8 +7,8 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\isAuthMiddleware;
 use Illuminate\Support\Facades\Route;
-use PHPUnit\Framework\Attributes\PostCondition;
 
 Route::get('/', function () {
     return redirect()->route('login.view');
@@ -26,7 +26,7 @@ Route::prefix('users')->controller(AuthController::class)->group(function () {
 });
 
 // profile routes
-Route::prefix('profile')->controller(ProfileController::class)->group(function () {
+Route::prefix('profile')->middleware(isAuthMiddleware::class)->controller(ProfileController::class)->group(function () {
     // Views
     Route::get('/upload', 'profileUploadView')->name('profile.upload.view');
     Route::get('/me', 'profileView')->name('user.profile.view');
@@ -36,7 +36,7 @@ Route::prefix('profile')->controller(ProfileController::class)->group(function (
     Route::post('/edit', 'edit')->name('user.edit.action');
 });
 
-Route::prefix('posts')->controller(PostController::class)->group(function () {
+Route::prefix('posts')->middleware(isAuthMiddleware::class)->controller(PostController::class)->group(function () {
     // views
     Route::get('/browse', 'posts')->name('posts.view');
     Route::get('/new', 'newView')->name('posts.new.view');
@@ -45,7 +45,7 @@ Route::prefix('posts')->controller(PostController::class)->group(function () {
     Route::delete('/delete/{id}', 'postDelete');
 });
 
-Route::prefix('user')->controller(UserController::class)->group(function () {
+Route::middleware(isAuthMiddleware::class)->prefix('user')->controller(UserController::class)->group(function () {
     // views
     Route::get('/community', 'communityView')->name('community.view');
     Route::get('/show/{id}', 'show')->name('user.show.view');
@@ -53,7 +53,7 @@ Route::prefix('user')->controller(UserController::class)->group(function () {
     Route::get('/community/search', 'communityView')->name('community.search');
 });
 
-Route::prefix('user')->controller(FollowsController::class)->group(function () {
+Route::prefix('user')->middleware(isAuthMiddleware::class)->controller(FollowsController::class)->group(function () {
     // views
     // actions
     Route::post('/follow/{id}', 'follow')->name('user.follow');
@@ -61,12 +61,12 @@ Route::prefix('user')->controller(FollowsController::class)->group(function () {
     Route::delete('/unfollow/{id}', 'unfollow')->name('user.unfollow');
 });
 
-Route::prefix('post')->controller(LikeController::class)->group(function () {
+Route::prefix('post')->middleware(isAuthMiddleware::class)->controller(LikeController::class)->group(function () {
     Route::post('/like/{id}', 'like')->name('user.like');
     Route::post('/unlike/{id}', 'unlike')->name('user.unlike');
 });
 
-Route::prefix('post')->controller(CommentController::class)->group(function () {
+Route::prefix('post')->middleware(isAuthMiddleware::class)->controller(CommentController::class)->group(function () {
     // views
     Route::get('/comments/{id}', 'comments')->name('post.comments.view');
     // actions
