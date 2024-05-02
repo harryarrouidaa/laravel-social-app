@@ -15,20 +15,21 @@
                     <div class="font-bold text-slate-600">{{ $notification->sender->username }}</div>
                     <div class="text-slate-600">{{ $notification->content }}</div>
                 </div>
-                <div class="flex justify-center items-center gap-1">
-
+                <form class="flex justify-center items-center gap-1" method="post"
+                    action="{{ route('notification.check', ['id' => $notification->id]) }}">
+                    @csrf
                     @if ($notification->read == true)
-                    <img src="{{ asset('assets/checkblue.svg') }}" alt="not found" class="w-[25px]">
-                        <div class="text-start text-sm text-blue-400">
+                        <img src="{{ asset('assets/checkblue.svg') }}" alt="not found" class="w-[25px]">
+                        <button type="submit" class="text-start text-sm text-blue-400">
                             checked
-                        </div>
+                        </button>
                     @else
                         <img src="{{ asset('assets/check.svg') }}" alt="not found" class="w-[25px]">
-                        <div class="text-start text-sm">
+                        <button type="submit" class="text-start text-sm">
                             check
-                        </div>
+                        </button>
                     @endif
-                </div>
+                </form>
             </div>
             <hr>
         @endforeach

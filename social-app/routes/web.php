@@ -76,6 +76,9 @@ Route::prefix('post')->middleware(isAuthMiddleware::class)->controller(CommentCo
 });
 
 Route::prefix('notifications')->middleware(isAuthMiddleware::class)->controller(NotificationController::class)->group(function () {
+    // views
     Route::get('/all', 'all')->name('notifications.view');
     Route::get('/{id}', 'show')->name('notification.show');
+    // actions
+    Route::post('/{id}/check', 'check')->name('notification.check');
 });
