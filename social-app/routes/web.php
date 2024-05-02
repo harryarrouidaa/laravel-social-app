@@ -71,4 +71,5 @@ Route::prefix('post')->controller(CommentController::class)->group(function () {
     Route::get('/comments/{id}', 'comments')->name('post.comments.view');
     // actions
     Route::post('/comment/{post_id}', 'comment')->name('post.comment.action');
+    Route::delete('/comment/delete/{id}', 'delete')->name('user.comment.delete');
 });
