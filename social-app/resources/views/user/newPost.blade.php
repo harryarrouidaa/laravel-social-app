@@ -25,14 +25,14 @@
                     <div>
                         <input type="file" id="file-upload" name="image" class="hidden" />
                         <label for="file-upload" class="cursor-pointer flex items-center space-x-2">
-                            <img src="{{asset('/post/add-item2.svg')}}" alt="not found" class="w-[20px]">
+                            <img src="{{ asset('/post/add-item2.svg') }}" alt="not found" class="w-[20px]">
                             <span class="text-slate-600">Upload Image</span>
-                        </label>   
+                        </label>
                     </div>
                     <button type="submit" class="btn btn-primary text-white">CREATE</button>
                 </div>
             </div>
-           
+
         </form>
     </div>
 </div>

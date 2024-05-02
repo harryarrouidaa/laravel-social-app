@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FollowsController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
@@ -47,9 +48,9 @@ Route::prefix('posts')->controller(PostController::class)->group(function () {
 Route::prefix('user')->controller(UserController::class)->group(function () {
     // views
     Route::get('/community', 'communityView')->name('community.view');
-    Route::get('/show/{id}','show')->name('user.show.view');
+    Route::get('/show/{id}', 'show')->name('user.show.view');
     // actions
-    Route::get('/community/search','communityView')->name('community.search');
+    Route::get('/community/search', 'communityView')->name('community.search');
 });
 
 Route::prefix('user')->controller(FollowsController::class)->group(function () {
@@ -60,8 +61,14 @@ Route::prefix('user')->controller(FollowsController::class)->group(function () {
     Route::delete('/unfollow/{id}', 'unfollow')->name('user.unfollow');
 });
 
-Route::prefix('user')->controller(LikeController::class)->group(function () {
+Route::prefix('post')->controller(LikeController::class)->group(function () {
     Route::post('/like/{id}', 'like')->name('user.like');
     Route::post('/unlike/{id}', 'unlike')->name('user.unlike');
-    // Route::post('/comment/{id}', 'comment')->name('user.comment.view');
+});
+
+Route::prefix('post')->controller(CommentController::class)->group(function () {
+    // views
+    Route::get('/comments/{id}', 'comments')->name('post.comments.view');
+    // actions
+    Route::post('/comment/{post_id}', 'comment')->name('post.comment.action');
 });

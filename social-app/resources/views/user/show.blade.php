@@ -61,14 +61,27 @@
                         </div>
                         <img src="{{ Storage::url($post->image->path) }}" alt="not found" class="w-[300px] rounded-md">
                         <div class="flex justify-start items-center gap-10 w-1/3">
-                            <div class="flex items-center gap-2">
-                                <img src="{{ asset('/post/like.svg') }}" alt="not found" class="w-[23px]">
-                                <div class="text-lg text-slate-600">like</div>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <img src="{{ asset('/post/comment.svg') }}" alt="not found" class="w-[20px]">
-                                <div class="text-lg text-slate-600">comment</div>
-                            </div>
+                            @if ($post->likes()->where('post_id', $post->id)->where('user_id', auth()->user()->id)->exists())
+                                <form class="flex items-center gap-1" method="post"
+                                    action="{{ route('user.unlike', ['id' => $post->id]) }}">
+                                    @csrf
+                                    <img src="{{ asset('/post/unlike.svg') }}" alt="not found" class="w-[20px]">
+                                    <button type="submit" class="text-md text-blue-400">liked</button>
+                                </form>
+                            @else
+                                <form class="flex items-center gap-1" method="post"
+                                    action="{{ route('user.like', ['id' => $post->id]) }}">
+                                    @csrf
+                                    <img src="{{ asset('/post/like.svg') }}" alt="not found" class="w-[20px]">
+                                    <button type="submit" class="text-md text-slate-600">like</button>
+                                </form>
+                            @endif
+                            <form class="flex items-center gap-1" method="post"
+                            action="{{ route('user.comment', ['id' => $post->id]) }}">
+                            @csrf 
+                                <img src="{{ asset('/post/comment.svg') }}" alt="not found" class="w-[18px]">
+                                <button type="submit" class="text-md text-slate-600">comment</button>
+                            </form>
                         </div>
                     </div>
                 </div>
