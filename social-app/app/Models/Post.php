@@ -20,7 +20,13 @@ class Post extends Model
     {
         return $this->hasOne(Image::class);
     }
-    public function likes(){
+    public function likes()
+    {
         return $this->hasMany(Like::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

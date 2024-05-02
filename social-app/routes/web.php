@@ -81,4 +81,5 @@ Route::prefix('notifications')->middleware(isAuthMiddleware::class)->controller(
     Route::get('/{id}', 'show')->name('notification.show');
     // actions
     Route::post('/{id}/check', 'check')->name('notification.check');
+    Route::delete('/delete', 'delete')->name('notifications.delete');
 });
