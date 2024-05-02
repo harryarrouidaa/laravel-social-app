@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\PostLiked;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\Like;
 use App\Models\Post;
@@ -26,14 +27,18 @@ class LikeController extends Controller
     public function unlike(Request $request, $id)
     {
         $unlike = Like::where('user_id', '=', auth()->user()->id)
-            ->where('post_id', '=', $id)->delete();
+            ->where('post_id', '=', $id)
+            ->delete();
+
         if ($unlike) {
             $post = Post::find($id);
             $sender = auth()->user();
             $user = $post->user;
-            $content = "$sender->username liked your post, $post->id";
-            event(new PostLiked($sender->id, $content, $user->id, $post->id));
-            return back();
+
+            $notification = Notification::where('post_id', $post->id)->where('sender_id', $sender->id)->where('user_id', $user->id)->first();
+            if ($notification->delete()) {
+                return back();
+            }
         }
     }
 }

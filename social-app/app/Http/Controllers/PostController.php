@@ -12,7 +12,7 @@ class PostController extends Controller
 {
     public function posts()
     {
-        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
+        $posts = Post::orderBy('created_at', 'desc')->where('user_id', '!=', auth()->user()->id)->paginate(10);
         return view("posts.all_posts", compact('posts'));
     }
 
@@ -31,7 +31,6 @@ class PostController extends Controller
             $request->validate(['image' => ['image']]);
             $imagePath = $request->file('image')->store('public/images');
             $result = $post->image()->create(['path' => $imagePath]);
-            // $result = Image::create(['path' => $imagePath, 'post_id' => $post->id]);
             if ($result) {
                 return redirect()->route('posts.new.view');
             }
