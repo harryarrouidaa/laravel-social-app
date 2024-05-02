@@ -17,11 +17,12 @@ class PostLiked
     /**
      * Create a new event instance.
      */
-    public function __construct($sender_id, $content, $user_id)
+    public function __construct($sender_id, $content, $user_id, $post_id)
     {
         $this->user_id = $user_id;
         $this->sender_id = $sender_id;
         $this->content = $content;
+        $this->post_id = $post_id;
     }
 
     /**

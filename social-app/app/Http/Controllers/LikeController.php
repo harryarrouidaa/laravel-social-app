@@ -14,12 +14,12 @@ class LikeController extends Controller
     public function like(Request $request, $id)
     {
         $like = Like::create(['post_id' => $id, 'user_id' => auth()->user()->id]);
-        $post = Post::find($id);
         if ($like) {
+            $post = Post::find($id);
             $sender = auth()->user();
             $user = $post->user;
-            $content = "$sender->username liked your post";
-            event(new PostLiked($sender->id, $content, $user->id));
+            $content = "$sender->username liked your post, $post->id";
+            event(new PostLiked($sender->id, $content, $user->id, $post->id));
             return back();
         }
     }
@@ -28,6 +28,11 @@ class LikeController extends Controller
         $unlike = Like::where('user_id', '=', auth()->user()->id)
             ->where('post_id', '=', $id)->delete();
         if ($unlike) {
+            $post = Post::find($id);
+            $sender = auth()->user();
+            $user = $post->user;
+            $content = "$sender->username liked your post, $post->id";
+            event(new PostLiked($sender->id, $content, $user->id, $post->id));
             return back();
         }
     }

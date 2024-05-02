@@ -15,9 +15,13 @@ return new class extends Migration {
 
             $table->string('content');
             $table->boolean('read')->default(false);
+            $table->string('type');
 
+            $table->unsignedBigInteger('post_id')->nullable(true);
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('sender_id');
+            
+            $table->foreign('post_id')->references('id')->on('posts');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('sender_id')->references('id')->on('users');
 

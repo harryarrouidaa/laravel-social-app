@@ -27,10 +27,29 @@ class SendLikeNotification
         // \Log::info("Content: " . $event->content);
         // \Log::info("User ID: " . $event->user_id);
 
-        Notification::create([
-            "user_id" => $event->user_id,
-            "sender_id" => $event->sender_id,
-            "content" => $event->content,
-        ]);
+        if (
+            Notification::where("sender_id", $event->sender_id)
+                ->where('user_id', $event->user_id)
+                ->where('type', 'like')
+                ->where('post_id', $event->post_id)
+                ->exists()
+        ) {
+            $notification = Notification::where("sender_id", $event->sender_id)
+                ->where('user_id', $event->user_id)
+                ->where('type', 'like')
+                ->where('post_id', $event->post_id)
+                ->first(); // Use first() instead of get()
+
+            $notification->delete();
+        } else {
+            Notification::create([
+                'sender_id' => $event->sender_id,
+                'user_id' => $event->user_id,
+                'type' => 'like',
+                'post_id' => $event->post_id,
+                'content' => $event->content
+            ]);
+        }
     }
 }
+
