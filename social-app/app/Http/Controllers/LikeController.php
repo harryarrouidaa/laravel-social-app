@@ -18,7 +18,7 @@ class LikeController extends Controller
             $post = Post::find($id);
             $sender = auth()->user();
             $user = $post->user;
-            $content = "$sender->username liked your post, $post->id";
+            $content = "liked your post";
             event(new PostLiked($sender->id, $content, $user->id, $post->id));
             return back();
         }

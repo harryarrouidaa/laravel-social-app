@@ -8,7 +8,7 @@
         </div>
         <div class="flex items-center justify-start gap-2">
             <img src="{{ asset('/assets/sidebar/notification.svg') }}" alt="not found" class="w-[25px]">
-            <a class="text-xl text-slate-600 font-normal hover:underline" href="{{route('posts.new.view')}}">Notification</a>
+            <a class="text-xl text-slate-600 font-normal hover:underline" href="{{route('notifications.view')}}">Notification</a>
         </div>
         <div class="flex items-center justify-start gap-2">
             <img src="{{ asset('/assets/sidebar/community1.svg') }}" alt="not found" class="w-[25px]">

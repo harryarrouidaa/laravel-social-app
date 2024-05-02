@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FollowsController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -72,4 +73,9 @@ Route::prefix('post')->middleware(isAuthMiddleware::class)->controller(CommentCo
     // actions
     Route::post('/comment/{post_id}', 'comment')->name('post.comment.action');
     Route::delete('/comment/delete/{id}', 'delete')->name('user.comment.delete');
+});
+
+Route::prefix('notifications')->middleware(isAuthMiddleware::class)->controller(NotificationController::class)->group(function () {
+    Route::get('/all', 'all')->name('notifications.view');
+    Route::get('/{id}', 'show')->name('notification.show');
 });
