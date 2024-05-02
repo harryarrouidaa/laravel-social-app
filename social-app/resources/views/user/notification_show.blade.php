@@ -46,8 +46,9 @@
                         </div>
                         <div class="text-start text-slate-600 pl-10 w-full">{{ $comment->content }}</div>
                         @if ($comment->user_id === auth()->user()->id)
-                            <form method="post" action="{{route('user.comment.delete', ['id' => $comment->id])}}" class="flex justify-end text-end text-end mt-3">
-                                @csrf 
+                            <form method="post" action="{{ route('user.comment.delete', ['id' => $comment->id]) }}"
+                                class="flex justify-end text-end text-end mt-3">
+                                @csrf
                                 @method('DELETE')
                                 <button class="flex justify-center gap-1" type="submit">
                                     <img src="{{ asset('/post/delete-1.svg') }}" alt="not found" class="w-[20px]">
