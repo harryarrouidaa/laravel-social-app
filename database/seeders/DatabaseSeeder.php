@@ -125,7 +125,7 @@ class DatabaseSeeder extends Seeder
             // Create profile for each user
             DB::table('profiles')->insert([
                 'user_id' => $userId,
-                'path' => 'public/profiles/' . $userId . '.jpg',
+                'path' => 'public/profiles/' . $userId . '.jpeg',
             ]);
 
             // Create posts for some users
