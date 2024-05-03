@@ -57,15 +57,15 @@
                                             class="flex justify-center items-center gap-1">
                                             @csrf
                                             @method('DELETE')
-                                            <img src="{{ asset('assets/added.svg') }}" alt="not found" class="w-[20px]">
-                                            <button type="submit" class="text-md text-slate-600">Delete Friend</button>
+                                            <img src="{{ asset('friends/delete.svg') }}" alt="not found"
+                                                class="w-[20px]">
+                                            <button type="submit" class="text-md text-red-400">Delete Friend</button>
                                         </form>
                                     @else
                                         <form action="{{ route('add.friend', ['id' => $user->id]) }}" method="post"
                                             class="flex justify-center items-center gap-1">
                                             @csrf
-                                            <img src="{{ asset('assets/added.svg') }}" alt="not found"
-                                                class="w-[20px]">
+                                            <img src="{{ asset('friends/add.svg') }}" alt="not found" class="w-[20px]">
                                             <button type="submit" class="text-md text-slate-600">Add Friend</button>
                                         </form>
                                     @endif
@@ -76,12 +76,6 @@
                                         <img src="{{ asset('assets/add.svg') }}" alt="not found" class="w-[20px]">
                                         <button type="submit" class="text-md text-slate-600">Follow</button>
                                     </form>
-                                    {{-- <form method="post" action="/user/block/{{ $user->id }}"
-                                        class="flex justify-center gap-1 items-center">
-                                        @csrf
-                                        <img src="{{ asset('assets/block.svg') }}" alt="not found" class="w-[20px]">
-                                        <button type="submit" class="text-md text-red-400">Block</button>
-                                    </form> --}}
                                 @endif
 
                             </div>

@@ -22,6 +22,11 @@ class AuthController extends Controller
     {
         $credentials = $request->only("email", "password");
         if (auth()->attempt($credentials)) {
+            // $user = auth()->user();
+            // $token = $user->createToken("token")->accessToken;
+            // if ($token) {
+            //     return response()->json(['user' => $user, 'token' => $token]);
+            // }
             return redirect()->route('posts.view');
         } else {
             return redirect()->back();

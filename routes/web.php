@@ -94,7 +94,8 @@ Route::prefix('friend')->middleware(isAuthMiddleware::class)->controller(FriendC
 });
 
 // routes for the chat app on react
-Route::controller(ApiController::class)->group(function (){
+Route::controller(ApiController::class)->group(function () {
     Route::get('/api/users', 'getUsers');
-    Route::get('/api/friends', 'getFriends');
+    Route::get('/api/friends/{id}', 'getFriends');  
+    Route::get('/api/profile/{id}', 'getProfilePath');
 });
