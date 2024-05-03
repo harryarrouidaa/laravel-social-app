@@ -42,8 +42,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex justify-end gap-10 items-center">
-
+                            <div class="flex justify-end gap-10 items-center w-[50%]">
                                 {{-- Check if the authenticated user is following this user --}}
                                 @if (auth()->user()->following()->where('following_id', $user->id)->exists())
                                     <form method="post" action="/user/unfollow/{{ $user->id }}"
@@ -52,6 +51,11 @@
                                         @csrf
                                         <img src="{{ asset('assets/added.svg') }}" alt="not found" class="w-[20px]">
                                         <button type="submit" class="text-md text-emerald-400">Followed</button>
+                                    </form>
+                                    <form action="{{ route('add.friend', ['id' => $user->id]) }}" method="post" class="flex justify-center items-center gap-1">
+                                        @csrf
+                                        <img src="{{ asset('assets/added.svg') }}" alt="not found" class="w-[20px]">
+                                        <button type="submit" class="text-md text-slate-600">Add Friend</button>
                                     </form>
                                 @else
                                     <form method="post" action="/user/follow/{{ $user->id }}"

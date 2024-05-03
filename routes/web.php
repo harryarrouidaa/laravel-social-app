@@ -4,6 +4,7 @@ use App\Http\Controllers\ApiController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FollowsController;
+use App\Http\Controllers\FriendController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PostController;
@@ -87,6 +88,12 @@ Route::prefix('notifications')->middleware(isAuthMiddleware::class)->controller(
     Route::delete('/delete', 'delete')->name('notifications.delete');
 });
 
+Route::prefix('friend')->middleware(isAuthMiddleware::class)->controller(FriendController::class)->group(function () {
+    Route::post('/add/{id}', 'add')->name('add.friend');
+});
+
+// routes for the chat app on react
 Route::controller(ApiController::class)->group(function (){
     Route::get('/api/users', 'getUsers');
+    Route::get('/api/friends', 'getFriends');
 });

@@ -11,4 +11,8 @@ class ApiController extends Controller
         $users = User::all();
         return response()->json($users);
     }
+    public function getFriends(){
+        $friends = auth()->user()->following;
+        return response()->json($friends);
+    }
 }
