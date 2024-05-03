@@ -52,11 +52,23 @@
                                         <img src="{{ asset('assets/added.svg') }}" alt="not found" class="w-[20px]">
                                         <button type="submit" class="text-md text-emerald-400">Followed</button>
                                     </form>
-                                    <form action="{{ route('add.friend', ['id' => $user->id]) }}" method="post" class="flex justify-center items-center gap-1">
-                                        @csrf
-                                        <img src="{{ asset('assets/added.svg') }}" alt="not found" class="w-[20px]">
-                                        <button type="submit" class="text-md text-slate-600">Add Friend</button>
-                                    </form>
+                                    @if (auth()->user()->friends()->where('friend_id', $user->id)->exists())
+                                        <form action="{{ route('delete.friend', ['id' => $user->id]) }}" method="post"
+                                            class="flex justify-center items-center gap-1">
+                                            @csrf
+                                            @method('DELETE')
+                                            <img src="{{ asset('assets/added.svg') }}" alt="not found" class="w-[20px]">
+                                            <button type="submit" class="text-md text-slate-600">Delete Friend</button>
+                                        </form>
+                                    @else
+                                        <form action="{{ route('add.friend', ['id' => $user->id]) }}" method="post"
+                                            class="flex justify-center items-center gap-1">
+                                            @csrf
+                                            <img src="{{ asset('assets/added.svg') }}" alt="not found"
+                                                class="w-[20px]">
+                                            <button type="submit" class="text-md text-slate-600">Add Friend</button>
+                                        </form>
+                                    @endif
                                 @else
                                     <form method="post" action="/user/follow/{{ $user->id }}"
                                         class="flex justify-center gap-1 items-center">

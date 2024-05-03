@@ -90,6 +90,7 @@ Route::prefix('notifications')->middleware(isAuthMiddleware::class)->controller(
 
 Route::prefix('friend')->middleware(isAuthMiddleware::class)->controller(FriendController::class)->group(function () {
     Route::post('/add/{id}', 'add')->name('add.friend');
+    Route::delete('/delete/{id}', 'delete')->name('delete.friend');
 });
 
 // routes for the chat app on react

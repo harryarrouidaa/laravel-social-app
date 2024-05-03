@@ -14,4 +14,13 @@ class FriendController extends Controller
             return back();
         }
     }
+
+    public function delete(Request $request, $id)
+    {
+        $friend = Friend::where('user_id', auth()->user()->id)->where('friend_id', $id)->first();
+        if ($friend) {
+            $friend->delete();
+        }
+        return back();
+    }
 }
