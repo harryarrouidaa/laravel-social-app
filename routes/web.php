@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FollowsController;
@@ -84,4 +85,8 @@ Route::prefix('notifications')->middleware(isAuthMiddleware::class)->controller(
     // actions
     Route::post('/{id}/check', 'check')->name('notification.check');
     Route::delete('/delete', 'delete')->name('notifications.delete');
+});
+
+Route::controller(ApiController::class)->group(function (){
+    Route::get('/api/users', 'getUsers');
 });
