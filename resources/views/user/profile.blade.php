@@ -13,7 +13,6 @@
                 <div class="flex flex-col gap-1">
                     <div class="font-bold">{{ auth()->user()->username }}</div>
                     <div>{{ auth()->user()->email }}</div>
-                    {{-- <div class="text-md font-light">{{ count(auth()->user()->following->pluck('user_id')->where('user_id', '!=', auth()->user()->id)->unique()) }} followers -</div> --}}
                     <div class="flex justify-start gap-5 items-center">
                         <div class="text-md font-light">{{ count(auth()->user()->followers) }} followers</div>
                         <div class="text-md font-light">{{ count(auth()->user()->following) }} following</div>
