@@ -5,12 +5,12 @@
     <div class="w-1/6">
         @include('layouts.sidebar')
     </div>
-    <div class="w-5/6 h-screen">
+    <div class="w-5/6 h-screen text-slate-600">
         <div class="border-b w-full p-10 flex justify-between">
             <div class="w-full flex justify-start items-center gap-6">
                 <img src="{{ Storage::url(auth()->user()->profile->path) }}" alt="not found"
                     class="w-[100px] h-[100px] rounded-full">
-                <div class="flex flex-col gap-2">
+                <div class="flex flex-col gap-1">
                     <div class="font-bold">{{ auth()->user()->username }}</div>
                     <div>{{ auth()->user()->email }}</div>
                     {{-- <div class="text-md font-light">{{ count(auth()->user()->following->pluck('user_id')->where('user_id', '!=', auth()->user()->id)->unique()) }} followers -</div> --}}

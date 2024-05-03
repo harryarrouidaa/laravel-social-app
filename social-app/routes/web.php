@@ -35,6 +35,8 @@ Route::prefix('profile')->middleware(isAuthMiddleware::class)->controller(Profil
     // actions
     Route::post('/upload', 'upload')->name('profile.upload.action');
     Route::post('/edit', 'edit')->name('user.edit.action');
+    Route::put('/update/{id}', 'update')->name('user.profile.update');
+    Route::post('/skip', 'skip')->name('profile.upload.skip');
 });
 
 Route::prefix('posts')->middleware(isAuthMiddleware::class)->controller(PostController::class)->group(function () {

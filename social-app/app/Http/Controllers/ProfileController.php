@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -47,6 +49,32 @@ class ProfileController extends Controller
         $user->address = $req->address;
         $user->status = $req->status;
         $result = $user->save();
+        if ($result) {
+            return redirect()->route('user.profile.view');
+        }
+    }
+
+    public function update(Request $req, $id)
+    {
+        $req->validate(['profile', ['image']]);
+        $user = User::find($id);
+        if ($req->hasFile('profile')) {
+            $deleted = Storage::delete($user->profile->path);
+            if ($deleted) {
+                $newProfile = $req->file('profile')->store('public/profiles');
+                $user->profile->path = $newProfile;
+                if ($user->profile->save()) {
+                    return redirect()->route('user.profile.view');
+                }
+            }
+        }
+        return back();
+    }
+    // to be fixed later
+    public function skip(Request $req)
+    {
+        $user = auth()->user();
+        $result = Profile::create(['user_id' => $user->id]);
         if ($result) {
             return redirect()->route('user.profile.view');
         }

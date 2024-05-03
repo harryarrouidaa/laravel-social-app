@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->string('path')->default(Storage::url('public/profiles/default.jpg'));
+            $table->string('path')->default('public/profiles/default.jpg');
 
             $table->unsignedBigInteger('user_id')->nullable(true);
             $table->foreign('user_id')->references('id')->on('users');
