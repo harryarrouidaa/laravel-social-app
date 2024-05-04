@@ -37,7 +37,7 @@
         <div class="flex items-center justify-start gap-2 transition-all duration-300 ease-in-out delay-50 hover:ml-3">
             <img src="{{ asset('/assets/sidebar/chat.svg') }}" alt="not found" class="w-[25px]">
             <a class="text-xl text-slate-600 font-normal hover:underline"
-                href="http://localhost:3000/chat/{{ auth()->user()->id }}/">chat</a>
+                href="http://localhost:3000/{{ auth()->user()->id }}">chat</a>
         </div>
     </div>
     <div class="flex items-center justify-start absolute bottom-5 left-10">
