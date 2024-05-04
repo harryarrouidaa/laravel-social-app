@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Friend;
 use App\Models\Notification;
 use App\Models\Post;
 use App\Models\User;
@@ -17,15 +18,29 @@ class NotificationController extends Controller
     public function check($id)
     {
         $notification = Notification::find($id);
-        if ($notification->read) {
-            $notification->read = false;
+        if ($notification->type == 'request') {
+            // to be fixed later
+            $friendRequest = Friend::where('user_id', $notification->sender_id)->where('friend_id', auth()->user()->id)->first();
+            $friendRequest->accepted = true;
+            $make_version_to_other_user = Friend::create([
+                'friend_id' => $notification->sender_id,
+                'user_id' => auth()->user()->id,
+                'accepted' => true,
+            ]);
+            $notification->read = true;
+            $friendRequest->save();
             $notification->save();
         } else {
-            $notification->read = true;
+            if ($notification->read) {
+                $notification->read = false;
+            } else {
+                $notification->read = true;
+            }
             $notification->save();
         }
         return back();
     }
+
     public function delete()
     {
         $notifications = auth()->user()->notifications;

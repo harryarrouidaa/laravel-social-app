@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Friend;
 use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,25 +14,19 @@ class ApiController extends Controller
         $users = User::all();
         return response()->json($users);
     }
+
+
     public function getFriends($id)
     {
         $user = User::find($id);
         if ($user) {
-            $friends = $user->friends()
-                ->join('users', 'users.id', '=', 'friends.friend_id')
-                ->select('users.username', 'friends.user_id', 'friends.friend_id')
-                ->where('friends.user_id', $id)
-                ->get();
+            $friends = Friend::where('user_id', $id)->with('user')->get();
 
-            $profiles = [];
-            foreach ($friends as $friend) {
-                $profile = Profile::where('user_id', $friend->friend_id)->first();
-                $profiles[] = $profile;
-            }
-
-            return response()->json(['friends' => $friends, 'profiles' => $profiles, 'user' => $user]);
+            return response()->json(['friends' => $friends, 'user' => $user]);
         }
     }
+
+
 
 
     public function getProfilePath($id)
