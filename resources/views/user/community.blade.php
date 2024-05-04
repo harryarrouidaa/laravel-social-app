@@ -53,14 +53,22 @@
                                         <button type="submit" class="text-md text-emerald-400">Followed</button>
                                     </form>
                                     @if (auth()->user()->friends()->where('friend_id', $user->id)->exists())
-                                        <form action="{{ route('delete.friend', ['id' => $user->id]) }}" method="post"
-                                            class="flex justify-center items-center gap-1">
-                                            @csrf
-                                            @method('DELETE')
-                                            <img src="{{ asset('friends/delete.svg') }}" alt="not found"
-                                                class="w-[20px]">
-                                            <button type="submit" class="text-md text-red-400">Delete Friend</button>
-                                        </form>
+                                        <div class="text-slate-400 mb-3">
+                                            @if (auth()->user()->friends()->where('friend_id', $user->id)->where('accepted', true)->exists())
+                                                <form action="{{ route('delete.friend', ['id' => $user->id]) }}"
+                                                    method="post" class="flex justify-center items-center gap-1">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <img src="{{ asset('friends/delete.svg') }}" alt="not found"
+                                                        class="w-[20px]">
+                                                    <button type="submit" class="text-md text-red-400">Delete
+                                                        Friend</button>
+                                                </form>
+                                            @else 
+                                                pending ...
+                                            @endif
+
+                                        </div>
                                     @else
                                         <form action="{{ route('add.friend', ['id' => $user->id]) }}" method="post"
                                             class="flex justify-center items-center gap-1">

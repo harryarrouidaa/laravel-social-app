@@ -30,7 +30,7 @@
             <div class="flex flex-col gap-4">
                 <div class="flex flex-col">
                     <label for="age" class="mb-3">Age</label>
-                    <input type="text" class="input input-bordered" name="age" id="age"
+                    <input type="number" class="input input-bordered" name="age" id="age"
                         placeholder="20">
                 </div>
                 <div class="flex flex-col">
