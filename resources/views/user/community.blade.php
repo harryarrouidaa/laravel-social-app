@@ -20,10 +20,24 @@
                     </svg>
                 </button>
             </form>
-            <div class="flex justify-center items-center gap-3">
-                <img src="{{ asset('assets/attention.svg') }}" alt="not found" class="w-[20px]">
-                <div class="text-indigo-400 underline">
-                    every user is with his latest post, so you can chose wisely
+            <div class="border w-2/3 mx-auto py-5 px-5 border-indigo-400 rounded-lg flex flex-col gap-10 bg-indigo-50">
+                <div class="flex justify-start items-center gap-3">
+                    <img src="{{ asset('assets/attention.svg') }}" alt="not found" class="w-[20px]">
+                    <div class="text-indigo-400 underline">
+                        every user is with his latest post, so you can chose wisely
+                    </div>
+                </div>
+                <div class="flex justify-start items-center gap-3">
+                    <img src="{{ asset('assets/attention.svg') }}" alt="not found" class="w-[20px]">
+                    <div class="text-indigo-400 underline">
+                        you can follow and unfollow users
+                    </div>
+                </div>
+                <div class="flex justify-start items-center gap-3">
+                    <img src="{{ asset('assets/attention.svg') }}" alt="not found" class="w-[20px]">
+                    <div class="text-indigo-400 underline">
+                        you can add friends to chat later, (not avaliable currently)
+                    </div>
                 </div>
             </div>
             <div class="w-full flex flex-col p-10 gap-10">
@@ -56,15 +70,15 @@
                                         <div class="text-slate-400 mb-3">
                                             @if (auth()->user()->friends()->where('friend_id', $user->id)->where('accepted', true)->exists())
                                                 <form action="{{ route('delete.friend', ['id' => $user->id]) }}"
-                                                    method="post" class="flex justify-center items-center gap-1">
+                                                    method="post" class="flex justify-center items-center gap-1 mt-3">
                                                     @csrf
                                                     @method('DELETE')
                                                     <img src="{{ asset('friends/delete.svg') }}" alt="not found"
                                                         class="w-[20px]">
-                                                    <button type="submit" class="text-md text-red-400">Delete
+                                                    <button type="submit" class="text-md text-red-400 ">Delete
                                                         Friend</button>
                                                 </form>
-                                            @else 
+                                            @else
                                                 pending ...
                                             @endif
 
